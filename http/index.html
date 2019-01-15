@@ -11,33 +11,45 @@
     <!--<link rel="stylesheet" type="text/css" media="screen" href="../css/common.css" />-->
     <!--<script src="../js/bootstrap.js"></script>-->
 </head>
+
 <body>
-<!--    &lt;!&ndash;<div id="top">&ndash;&gt;
-    <h1 id="mainhead">Orbital information comparator</h1>
-    &lt;!&ndash;</div>&ndash;&gt;
-    <div id="orbitmap"></div>
-    <div id="leftpanel"></div>
-    <div id="midpanel"></div>
-    <div id="rightpanel"></div>-->
 <div class="row">
     <div class="col">
         <h1 class="display-4 text-center">Orbit Comparator</h1>
     </div>
 </div>
 <div class="row">
-    <div class="col" style="height: 250px; border-style: solid; border: 2px 1px 1px 1px;">
-        <h2 class="text-center" style="padding: 100px;">Map Placeholder</h2>
+    <div class="col text-center" style="border-style: solid; border: 2px 1px 1px 1px; background: #222;">
+        <svg width="800" height="400">
+            <!--Border-->
+            <rect width="800" height="400" stroke="gold" stroke-width="2" />
+            <!--Sun-->
+            <circle cx="400" cy="200" r="30" stroke="orange" stroke-width="2" fill="yellow" />
+            <!--Orbits-->
+            <g stroke="gray" stroke-width="1" fill="transparent">
+                <circle cx="400" cy="200" r="120" />
+                <circle cx="400" cy="200" r="100" />
+            </g>
+            <!--Bodies-->
+            <g stroke="lightgray" stroke-width="2" fill="gray">
+                <circle cx="280" cy="200" r="10" />
+                <circle cx="400" cy="300" r="5" />
+            </g>
+            <!-- Body-body line -->
+            <line x1="280" y1="200" x2="400" y2="300" stroke="rgb(255,0,0)" stroke-width="2" />
+            <text x="340" y="250" fill="red" >d: X km</text>
+        </svg>
     </div>
 </div>
-<div class="row" style="height: 300px;">
+<div class="row" style="height: 800px;">
     <div class="col text-center" style="border: solid 1px;">
-        <h3>Left</h3>
+        <h4>Left</h4>
     </div>
     <div class="col text-center" style="border: solid 1px;">
-        <h3>Middle</h3>
+        <h4>Middle</h4>
     </div>
     <div class="col text-center" style="border: solid 1px;">
-        <h3>Right</h3>
+        <h4>Right</h4>
     </div>
 </div>
 </body>
