@@ -1,11 +1,12 @@
 <?php
-    include("svg_common.php");
+    require("svg_circles.php");
+    global $width, $height;
 
     // Begin SVG
     echo <<< HEREDOC
-<svg xmlns="http://www.w3.org/2000/svg" version="1.2">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" width="$width" height="$height">
 HEREDOC;
 
-    drawBody(520, 200, 15, "planet");
+    drawCentreBody(15, "planet");
     echo "</svg>";
 ?>

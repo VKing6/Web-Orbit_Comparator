@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Orbit Comparator</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Orbit Comparator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Kristian Auestad">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/bs-darkly/bootstrap.min.css" title="Dark" />
@@ -13,9 +13,8 @@
     <!--<script src="../js/bootstrap.js"></script>-->
 </head>
 <?php
-    include("svg_common.php");
-    $svgw = 800;
-    $svgh = 400;
+    //require("svg_circles.php");
+    require("svg_ellipses.php");
 ?>
 
 <body>
@@ -25,23 +24,19 @@
     </div>
 </div>
 <div class="row">
-    <div class="col text-center" style="border-style: solid; border: 2px 1px 1px 1px; background: #222;">
-        <!--This whole thing will be generated using php code-->
-        <!--<svg width="800" height="400">-->
-        <svg <?php echo "width=".$svgw." height=".$svgh?>>
-            <!--Border-->
-            <rect width="800" height="400" stroke="gold" stroke-width="2" />
+    <div class="col text-center" style="border-style: solid; border-width: 2px 1px 1px 1px; background: #222;">
+        <svg <?php echo "width=".$mapwidth." height=".$mapheight?>>
             <?php
-                drawBody($centre_x, $centre_y, 30, "sol");
-                drawOrbit($centre_x, $centre_y, 120);
-                //drawOrbit($centre_x, $centre_y, 100);
-                drawBody(520, 200, 15, "planet");
-                drawOrbit(520, 200, 30);
-                drawBody(550, 200, 5, "rock");
+            /*
+            drawCentreBody(40, "sol");
+            $earth = drawBody(175, 195, 20, "gas");
+            $moon = drawChildBody($earth, 50, 135, 5, "terra");
+            drawChildBody($moon, 15, 180, 3, "rock");
+            drawBody(100, 0, 10, "rock");
+            */
+            drawCentreBody(1, "sol");
+            drawOrbitLine($centre_x, $centre_y, 100, 0.0, 55);
             ?>
-            <!-- Body-body line -->
-            <!--<line x1="280" y1="200" x2="400" y2="300" stroke="rgb(255,0,0)" stroke-width="2"/>
-            <text x="340" y="250" fill="red">d: X km</text>-->
         </svg>
     </div>
 </div>
