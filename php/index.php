@@ -25,17 +25,11 @@
 </div>
 <div class="row">
     <div class="col text-center" style="border-style: solid; border-width: 2px 1px 1px 1px; background: #222;">
-        <svg <?php echo "width=".$mapwidth." height=".$mapheight?>>
+        <svg <?= "width=".$mapwidth." height=".$mapheight?>>
             <?php
-            /*
-            drawCentreBody(40, "sol");
-            $earth = drawBody(175, 195, 20, "gas");
-            $moon = drawChildBody($earth, 50, 135, 5, "terra");
-            drawChildBody($moon, 15, 180, 3, "rock");
-            drawBody(100, 0, 10, "rock");
-            */
-            drawCentreBody(1, "sol");
-            drawOrbitLine($centre_x, $centre_y, 100, 0.0, 55);
+            $sol = drawCentreBody(30, "sol");
+            $earth = drawChildBody($sol, 200, 0.5, 0, 30, 10, "terra");
+            $moon = drawChildBody($earth, 40, 0.7, 30, 345, 5, "rock");
             ?>
         </svg>
     </div>
