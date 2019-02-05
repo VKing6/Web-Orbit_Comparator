@@ -17,6 +17,7 @@
 <div class="row">
     <div class="col">
         <h1 class="text-center">Orbit Comparator</h1>
+        <p class="text-center"><?=date("Y-m-d : h:i:s T")?></p>
     </div>
 </div>
 <div class="row">
@@ -24,14 +25,19 @@
         <img src="svg/svg_generator.php" alt="Orbit map" />
     </div>
 </div>
+<?php
+//    $dbConnection = new mysqli("localhost", "root", "", "bodies");
+//    if ($dbConnection->connect_error) die("Connection Error");
+//    $query = "SELECT `name`, `disp_name` from `bodies`";
+//    $result = $dbConnection->query($query);
+//    if (!$result) die("Query Error");
+?>
 <div class="row" style="height: 800px;">
     <div class="col text-center" style="border: solid 1px;">
         <h4>Body 1</h4>
         <select class="form-control" name="bodies" id="lsel">
             <!--To be filled from DB-->
-            <option value="Earth">Earth</option>
-            <option value="Mars">Mars</option>
-            <option value="40236Moccha">40236 Moccha</option>
+            <?php //populateSelectList($result); ?>
         </select>
         <p style="margin-top: 1em;">Test</p>
     </div>

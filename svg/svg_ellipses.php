@@ -94,7 +94,7 @@ function drawBodySystem($parent, $baseBody, ...$bodies) {
         echo <<< HEREDOC
 <g transform="rotate($rot $rotX $rotY)">
 HEREDOC;
-        $parent = drawChildBody($parent, $semimajor, $ecc, $arg_of_periapsis, $true_anomaly, $body_radius, $body_type,false);
+        $parent = drawChildBody($parent, $semimajor, $ecc, 0, $true_anomaly, $body_radius, $body_type,false);
         if(count($bodies) > 0) {
             drawBodySystem($parent, $bodies[0], ...array_slice($bodies, 1));
         }
