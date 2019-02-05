@@ -12,7 +12,9 @@
     <!--<link rel="stylesheet" type="text/css" media="screen" href="../css/common.css" />-->
     <!--<script src="../js/bootstrap.js"></script>-->
 </head>
-
+<?php
+require_once "db/db_common.php";
+?>
 <body>
 <div class="row">
     <div class="col">
@@ -25,26 +27,27 @@
         <img src="svg/svg_generator.php" alt="Orbit map" />
     </div>
 </div>
-<?php
-    $dbConnection = new mysqli("localhost", "root", "", "bodies");
-    if ($dbConnection->connect_error) die("Connection Error");
-    $query = "SELECT `name`, `disp_name` from `bodies`";
-    $result = $dbConnection->query($query);
-    if (!$result) die("Query Error");
-?>
 <div class="row" style="height: 800px;">
     <div class="col text-center" style="border: solid 1px;">
         <h4>Body 1</h4>
         <select class="form-control" name="bodies" id="lsel">
             <!--To be filled from DB-->
-            <?php populateSelectList($result); ?>
+            <?php populateSelectList($database); ?>
         </select>
         <p style="margin-top: 1em;">Test</p>
+        <?php displayData($database, "earth");?>
     </div>
     <div class="col text-center" style="border: solid 1px;">
         <h4>Labels</h4>
         <select name="hidden" id="hidden" class="form-control" style="visibility:hidden;"></select>
         <p style="margin-top: 1em;">Test</p>
+        <ul class="list-unstyled">
+            <li>Name</li>
+            <li>Radius</li>
+            <li>Period</li>
+            <li>Semimajor axis</li>
+            <li>Eccentricity</li>
+        </ul>
     </div>
     <div class="col text-center" style="border: solid 1px;">
         <h4>Body 2</h4>
@@ -57,5 +60,10 @@
         <p style="margin-top: 1em;">Test</p>
     </div>
 </div>
+<footer class="text-dark text-sm-center">&copy;Kristian Auestad <?=date("Y")?></footer>
 </body>
+<?php
+// Disconnect from db
+$database->close();
+?>
 </html>
