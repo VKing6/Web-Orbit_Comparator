@@ -1,6 +1,6 @@
 <?php
 $mapwidth = 800;
-$mapheight = 400;
+$mapheight = 800;
 $centre_x = $mapwidth/2;
 $centre_y = $mapheight/2;
 
@@ -9,6 +9,9 @@ $body_type["sol"] = array("orange", "yellow");
 $body_type["terra"] = array("deepskyblue", "mediumblue");
 $body_type["gas"] = array("darkorange", "sandybrown");
 $body_type["rock"] = array("lightgray", "gray");
+$body_type["red"] = array("brown", "firebrick");
+$body_type["cloud"] = array("bisque", "tan");
+$body_type["blue"] = array("royalblue", "darkslateblue");
 
 function drawCircle($cx, $cy, $r, $stroke, $stroke_width, $fill, $rot, $rotx, $roty) {
     $svg_circle = <<< HEREDOC

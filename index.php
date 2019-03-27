@@ -7,13 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Kristian Auestad">
     <link rel="stylesheet" type="text/css" media="screen" href="css/bs-darkly/bootstrap.min.css" title="Dark" />
-    <link rel="alternate stylesheet" type="text/css" media="screen" href="css/bs-flatly/bootstrap.min.css" title="Light" />
-    <!--<link rel="stylesheet" type="text/css" media="screen" href="../css/bootstrap.css" />-->
-    <!--<link rel="stylesheet" type="text/css" media="screen" href="../css/common.css" />-->
-    <!--<script src="../js/bootstrap.js"></script>-->
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/common.css" />
 </head>
 <?php
-require_once "db/db_common.php";
+require_once "db/db_selectlists.php";
+require_once "db/db_connect.php";
 ?>
 <body>
 <div class="row">
@@ -22,48 +20,55 @@ require_once "db/db_common.php";
         <p class="text-center"><?=date("Y-m-d : h:i:s T")?></p>
     </div>
 </div>
+<form method="get" name="bodiesForm">
 <div class="row">
-    <div class="col text-center" style="border-style: solid; border-width: 2px 1px 1px 1px; background: #222;">
+    <div class="col text-center" id="map-wrapper">
         <img src="svg/svg_generator.php" alt="Orbit map" />
+<!--        <iframe src="php/map.php" name="svgmap" scrolling="no"></iframe>-->
     </div>
 </div>
-<div class="row" style="height: 800px;">
-    <div class="col text-center" style="border: solid 1px;">
-        <h4>Body 1</h4>
-        <select class="form-control" name="bodies" id="lsel">
-            <!--To be filled from DB-->
-            <?php populateSelectList($database); ?>
-        </select>
-        <p style="margin-top: 1em;">Test</p>
-        <?php displayData($database, "earth");?>
+    <div class="row">
+        <!-- LEFT COL -->
+        <div class="col text-center" style="border: solid 1px;">
+            <h4>Body 1</h4>
+            <select class="form-control" name="body1" id="lsel">
+                <?php populateSelectList($database, "body1"); ?>
+            </select>
+            <br />
+            <div class="">
+                <?php displayData($database, "body1"); ?>
+            </div>
+        </div>
+        <!-- CENTRE COL -->
+        <div class="col text-center" style="border: solid 1px;">
+                <h4>Labels</h4>
+                <p style="margin-top: 1em;">
+                    <input type="submit" class="btn btn-info btn-block" value="Compare">
+                <noscript>
+                    <div class="bg-danger">Please enable Javascript</div>
+                </noscript>
+                <ul class="list-unstyled display-list">
+                    <li>Name</li>
+                    <li>Radius</li>
+                    <li>Period</li>
+                    <li>Semimajor axis</li>
+                    <li>Eccentricity</li>
+                </ul>
+            
+        </div>
+        <!-- RIGHT COL -->
+        <div class="col text-center" style="border: solid 1px;">
+            <h4>Body 2</h4>
+            <select class="form-control" name="body2" id="rsel">
+                <?php populateSelectList($database, "body2"); ?>
+            </select>
+            <br />
+            <?php displayData($database, "body2"); ?>
+            
+        </div>
     </div>
-    <div class="col text-center" style="border: solid 1px;">
-        <h4>Labels</h4>
-        <select name="hidden" id="hidden" class="form-control" style="visibility:hidden;"></select>
-        <p style="margin-top: 1em;">Test</p>
-        <ul class="list-unstyled">
-            <li>Name</li>
-            <li>Radius</li>
-            <li>Period</li>
-            <li>Semimajor axis</li>
-            <li>Eccentricity</li>
-        </ul>
-    </div>
-    <div class="col text-center" style="border: solid 1px;">
-        <h4>Body 2</h4>
-        <select class="form-control" name="bodies" id="rsel">
-            <!--To be filled from DB-->
-            <option value="Earth">Earth</option>
-            <option value="Mars">Mars</option>
-            <option value="40236Moccha">40236 Moccha</option>
-        </select>
-        <p style="margin-top: 1em;">Test</p>
-    </div>
-</div>
+</form>
 <footer class="text-dark text-sm-center">&copy;Kristian Auestad <?=date("Y")?></footer>
 </body>
-<?php
-// Disconnect from db
-$database->close();
-?>
+<?php require_once "db/db_close.php"; ?>
 </html>

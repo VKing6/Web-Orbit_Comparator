@@ -1,0 +1,22 @@
+iframe {
+    border: none;
+    overflow: hidden;
+}
+div#map-wrapper {
+    /*height: 400px;
+    width: 800px;*/
+    text-align: center;
+    width: 100%;
+    border-style: solid;
+    border-width: 2px 1px 1px 1px;
+}
+ul.display-list {
+    line-height: 200%;
+}
+
+div#list-wrapper {
+
+}
+div#list-wrapper iframe {
+
+}

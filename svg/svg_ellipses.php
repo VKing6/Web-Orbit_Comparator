@@ -1,6 +1,5 @@
 <?php
 require("svg_common.php");
-
 function transformEllipseKepCart($fx, $fy, $semimajor, $ecc, $arg_of_periapsis) {
     // Transform an ellipse from Keplerian to Cartesian form
     if ($ecc >= 0 && $ecc < 1) {
