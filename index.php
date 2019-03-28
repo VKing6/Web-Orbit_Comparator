@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../css/common.css" />
 </head>
 <?php
-require_once "db/db_selectlists.php";
+require_once "db/db_selectLists.php";
 require_once "db/db_connect.php";
 ?>
 <body>
@@ -29,32 +29,28 @@ require_once "db/db_connect.php";
 </div>
     <div class="row">
         <!-- LEFT COL -->
-        <div class="col text-center" style="border: solid 1px;">
+        <div class="col text-center box">
             <h4>Body 1</h4>
             <select class="form-control" name="body1" id="lsel">
                 <?php populateSelectList($database, "body1"); ?>
             </select>
             <br />
             <div class="">
-                <?php displayData($database, "body1"); ?>
+                <?php displayData($database, "body1", "sol"); ?>
             </div>
         </div>
         <!-- CENTRE COL -->
-        <div class="col text-center" style="border: solid 1px;">
-                <h4>Labels</h4>
-                <p style="margin-top: 1em;">
-                    <input type="submit" class="btn btn-info btn-block" value="Compare">
-                <noscript>
-                    <div class="bg-danger">Please enable Javascript</div>
-                </noscript>
-                <ul class="list-unstyled display-list">
-                    <li>Name</li>
-                    <li>Radius</li>
-                    <li>Period</li>
-                    <li>Semimajor axis</li>
-                    <li>Eccentricity</li>
-                </ul>
-            
+        <div class="col text-center box">
+            <h4 class="hidden">Labels</h4>
+            <input type="submit" class="btn btn-info btn-block" value="Compare">
+            <br />
+            <ul class="list-unstyled display-list">
+                <li>Name</li>
+                <li>Radius</li>
+                <li>Period</li>
+                <li>Semimajor axis</li>
+                <li>Eccentricity</li>
+            </ul>
         </div>
         <!-- RIGHT COL -->
         <div class="col text-center" style="border: solid 1px;">
@@ -63,7 +59,7 @@ require_once "db/db_connect.php";
                 <?php populateSelectList($database, "body2"); ?>
             </select>
             <br />
-            <?php displayData($database, "body2"); ?>
+            <?php displayData($database, "body2", "earth"); ?>
             
         </div>
     </div>
