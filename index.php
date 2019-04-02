@@ -23,20 +23,22 @@ require_once "db/db_connect.php";
 ?>
 <body>
 <div class="row">
+    <!-- Header -->
     <div class="col text-center">
         <h1>Orbit Comparator</h1>
-        <p id="time" class="hidden"><script>showTime()</script></p>
-        <noscript><p><?= date("Y-m-d : h:i:s T") ?></p></noscript>
+        <p id="time" class="hidden"><script>showTime()</script></p> <!-- Scripted running clock -->
+        <noscript><p><?= date("Y-m-d : h:i:s T") ?></p></noscript> <!-- Unscripted update-on-refresh clock -->
     </div>
 </div>
 <form method="get" name="bodiesForm">
 <div class="row">
+    <!-- Main map -->
     <div class="col text-center" id="map-wrapper">
         <img src="svg/svg_generator.php" alt="Orbit map" />
     </div>
 </div>
     <div class="row">
-        <!-- LEFT COL -->
+        <!-- Left data column -->
         <div class="col text-center box">
             <h4>Body 1</h4>
             <select class="form-control" name="body1" id="lsel">
@@ -47,7 +49,7 @@ require_once "db/db_connect.php";
                 <?php displayData($database, "body1", "sol"); ?>
             </div>
         </div>
-        <!-- CENTRE COL -->
+        <!-- Centre label column -->
         <div class="col text-center box">
             <h4 class="invisible">Labels</h4>
             <input type="submit" class="btn btn-info btn-block" value="Compare">
@@ -60,7 +62,7 @@ require_once "db/db_connect.php";
                 <li>Eccentricity</li>
             </ul>
         </div>
-        <!-- RIGHT COL -->
+        <!-- Right data column -->
         <div class="col text-center box">
             <h4>Body 2</h4>
             <select class="form-control" name="body2" id="rsel">
@@ -68,7 +70,6 @@ require_once "db/db_connect.php";
             </select>
             <br />
             <?php displayData($database, "body2", "earth"); ?>
-            
         </div>
     </div>
 </form>

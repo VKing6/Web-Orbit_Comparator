@@ -1,6 +1,6 @@
 <?php
 header('Content-type: image/svg+xml');
-require("svg_ellipses.php");
+require_once("svg_ellipses.php");
 require_once("../db/db_connect.php");
 
 $demo = false;
@@ -16,7 +16,7 @@ function drawDemo() {
         array(180, 0.3, 170, 0, 10, "snow"),
         array(60, 0.2, 50, 10, 5, "cloud")
     );
-    $fnord = drawChildBody($sol, 120, 0, 280, -50, 10, "blue");
+    drawChildBody($sol, 120, 0, 280, -50, 10, "blue");
 }
 if (false) { //(count($_GET) == 2) {
     $get_b1 = "mercury";

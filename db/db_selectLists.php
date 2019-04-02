@@ -1,5 +1,6 @@
 <?php
 function populateSelectList($database, $sel) {
+    // Retrieve database entries and generate dropdown lists
     $result = $database->query("SELECT `id`, `parent_id`, `name` FROM `body_data` ORDER BY `order`");
     $rows = $result->num_rows;
     if (count($_GET) < 2) {
@@ -29,6 +30,7 @@ function populateSelectList($database, $sel) {
 }
 
 function displayData($database, $sel) {
+    // Display data for selected stellar bodies
     if (count($_GET) == 2) {
         $body = htmlspecialchars($_GET[$sel]);
         $result = $database->query("SELECT `name`, `radius`, `orbital_period`, `semimajor_axis`, `eccentricity`

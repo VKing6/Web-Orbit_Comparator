@@ -22,12 +22,14 @@ HEREDOC;
     echo $svg_circle;
 }
 function drawBaseBody($cx, $cy, $r, $type, $rot = 0, $rotx = 0, $roty = 0) {
+    // Wrapper function for drawing stellar bodies with a given colour scheme
     global $body_type;
     $stroke_width = $r * 0.1;
     drawCircle($cx, $cy, $r, $body_type[$type][0], $stroke_width, $body_type[$type][1], $rot, $rotx, $roty);
     return array($cx, $cy);
 }
 function drawCentreBody($r, $type) {
+    // Draw a body in the centre of the map
     global $centre_x, $centre_y;
     drawBaseBody($centre_x, $centre_y, $r, $type, 0, 0, 0);
     return array($centre_x, $centre_y);

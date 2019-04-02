@@ -1,7 +1,8 @@
 <?php
 require("svg_common.php");
 function transformEllipseKepCart($fx, $fy, $semimajor, $ecc, $arg_of_periapsis) {
-    // Transform an ellipse from Keplerian to Cartesian form
+    // Transform an ellipse from Keplerian to Cartesian form (i.e. find the center of the ellipse given the
+    // coordinate of the primary focus)
     if ($ecc >= 0 && $ecc < 1) {
         $rx = $semimajor;
         $ry = $semimajor * sqrt(1-pow($ecc,2));
@@ -29,6 +30,7 @@ function transformEllipticPosKepCart($fx, $fy, $semimajor, $ecc, $arg_of_periaps
 }
 
 function drawEllipseCart($cx, $cy, $rx, $ry, $rot, $rotx, $roty, $stroke, $stroke_width, $fill, $doRot=true) {
+    // Draw an ellipse with the center at the given coordinate
     if (!$doRot) {
         $rot = 0;
     }
@@ -39,16 +41,19 @@ HEREDOC;
     echo $svg_ellipse;
 }
 function drawEllipseKep($fx, $fy, $semimajor, $ecc, $arg_of_periapsis, $stroke, $stroke_width, $fill, $doRot=true) {
+    // Draw an ellipse with the primary focus (parent body) at the given coordinate
     $params = transformEllipseKepCart($fx, $fy, $semimajor, $ecc, $arg_of_periapsis);
     array_push($params, $stroke, $stroke_width, $fill, $doRot);
     drawEllipseCart(...$params);  // Expand $param array as arguments for drawEllipseCart
 }
 function drawOrbitLine($fx, $fy, $semimajor, $ecc, $arg_of_periapsis, $doRot=true) {
+    // Draw tne line representing the orbit
     drawEllipseKep($fx, $fy, $semimajor, $ecc, $arg_of_periapsis,
             "lightgray", 1, "transparent", $doRot);
 }
 function drawBody($fx, $fy, $semimajor, $ecc, $arg_of_periapsis, $true_anomaly,
                   $body_radius, $body_type, $doRot = true) {
+    // Draw a stellar body at the given coordinates
     global $centre_x, $centre_y;
     $params = transformEllipticPosKepCart($fx, $fy, $semimajor, $ecc, $arg_of_periapsis, $true_anomaly);
     $body_x = $centre_x + $params[0];
@@ -63,6 +68,7 @@ function drawBody($fx, $fy, $semimajor, $ecc, $arg_of_periapsis, $true_anomaly,
 }
 function drawChildBody($parent, $semimajor, $ecc, $arg_of_periapsis, $true_anomaly,
                        $body_radius, $body_type, $doRot = true) {
+    // Draw a stellar body orbiting the given parent body
     $parent_x = $parent[0];
     $parent_y = $parent[1];
     $params = transformEllipticPosKepCart($parent_x, $parent_y, $semimajor, $ecc, $arg_of_periapsis, $true_anomaly);
@@ -77,6 +83,7 @@ function drawChildBody($parent, $semimajor, $ecc, $arg_of_periapsis, $true_anoma
     return array($body_x, $body_y);
 }
 function drawBodySystem($parent, $baseBody, ...$bodies) {
+    // Draw a system of orbiting bodies around a parent body (e.g. draw earth with moon around the sun)
     if (count($baseBody) == 6) {
         $fx = $parent[0];
         $fy = $parent[1];
