@@ -1,19 +1,15 @@
-.hidden {
+.invisible {
     visibility: hidden;
 }
-iframe {
-    border: none;
-    overflow: hidden;
+.hidden {
+    display: none;
 }
-
 ul.display-list {
     line-height: 200%;
 }
-
 div.box {
     border: solid 1px;
 }
-
 div#map-wrapper {
     /*height: 400px;
     width: 800px;*/
@@ -21,11 +17,4 @@ div#map-wrapper {
     width: 100%;
     border-style: solid;
     border-width: 2px 1px 1px 1px;
-}
-
-div#list-wrapper {
-
-}
-div#list-wrapper iframe {
-
 }

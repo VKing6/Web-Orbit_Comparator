@@ -19,8 +19,8 @@ function drawDemo() {
     $fnord = drawChildBody($sol, 120, 0, 280, -50, 10, "blue");
 }
 if (false) { //(count($_GET) == 2) {
-    $get_b1 = "jupiter";
-    $get_b2 = "europa";
+    $get_b1 = "mercury";
+    $get_b2 = "venus";
     $result = $database->query(
         "SELECT `parent_id`, `semimajor_axis`, `disp_size`, `disp_type`
           FROM `body_data` BD, `disp_types` DT
