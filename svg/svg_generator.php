@@ -18,11 +18,11 @@ function drawDemo() {
     );
     drawChildBody($sol, 120, 0, 280, -50, 10, "blue");
 }
-if (false) { //(count($_GET) == 2) {
-    $get_b1 = "mercury";
+if (true) { //(count($_GET) == 2) {
+    $get_b1 = "mars";
     $get_b2 = "venus";
     $result = $database->query(
-        "SELECT `parent_id`, `semimajor_axis`, `disp_size`, `disp_type`
+        "SELECT `parent_id`, `semimajor_axis`, `disp_size`, `disp_type`, `eccentricity`
           FROM `body_data` BD, `disp_types` DT
           WHERE id IN ('$get_b1', '$get_b2') AND BD.type_id = DT.type_id ORDER BY `semimajor_axis` DESC");
     if ($result) {
@@ -32,6 +32,7 @@ if (false) { //(count($_GET) == 2) {
         $b1_semimajor = htmlspecialchars($arr["semimajor_axis"]);
         $b1_size = htmlspecialchars($arr["disp_size"]);
         $b1_type = htmlspecialchars($arr["disp_type"]);
+        $b1_eccentricity = htmlspecialchars($arr["eccentricity"]);
 
         $result->data_seek(1);
         $arr = $result->fetch_assoc();
@@ -39,12 +40,13 @@ if (false) { //(count($_GET) == 2) {
         $b2_semimajor = htmlspecialchars($arr["semimajor_axis"]);
         $b2_size = htmlspecialchars($arr["disp_size"]);
         $b2_type = htmlspecialchars($arr["disp_type"]);
+        $b2_eccentricity = htmlspecialchars($arr["eccentricity"]);
 
         // Normalise orbit radii to keep large orbits on the screen
         $semimajor_norm = min(($mapwidth/2-50) / $b1_semimajor, 1);
 
-        $b1 = array($b1_semimajor*$semimajor_norm, 0, 0, 0, $b1_size, $b1_type);
-        $b2 = array($b2_semimajor*$semimajor_norm, 0, 180, 0, $b2_size, $b2_type);
+        $b1 = array($b1_semimajor*$semimajor_norm, $b1_eccentricity, 0, 180, $b1_size, $b1_type);
+        $b2 = array($b2_semimajor*$semimajor_norm, $b2_eccentricity, 0, 0, $b2_size, $b2_type, true);
         $result->close();
 
         if ($b2_parent == $get_b1) {
